@@ -1,0 +1,7 @@
+{
+  "name": "Comienzo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
