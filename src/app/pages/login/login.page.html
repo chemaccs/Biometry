@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <ion-title class="title">Welcome Back</ion-title>
+    <p class="subTitle">Sign in to access your account</p>
+  </div>
+  <form [formGroup]="formularioLogin">
+    <div class="ion-padding">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input placeholder="username" class="input" formControlName="nombre"></ion-input>
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input placeholder="password" class="input" formControlName="password" type="password"></ion-input>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </ion-item>
+    </div>
+  </form>    
+  <ion-button (click)="iniciar()">
+    Ingresar
+  </ion-button>
+
+  <div class="fingerPrintButton">
+    <ion-button *ngIf="isDisable" (click)="fingerPrint()">
+      <ion-icon name="finger-print-outline"></ion-icon>
+    </ion-button>    
+  </div>
+  <ion-fab>
+    <ion-fab-button [routerLink]="['/home']">
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="forgotpassword">
+    <a [routerLink]="['/reset-password']" style="color:#FFC33F">Forgot password?</a>
+  </div>
+  <div class="signupLink">
+    <p>New member? <a style="color:#FFC33F" [routerLink]="['/signup']">Signup now</a></p>
+  </div>
+</ion-content>

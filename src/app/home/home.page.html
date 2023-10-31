@@ -1,20 +1,87 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      A big app
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="main">
+    <span class="city">Melbourne</span>
+    <span class="date">Mon,3:54pm</span>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div class="icon">
+      <img src="../../assets/2x.png" alt="">
+    </div>
+
+    <span class="description">Cloudy</span>
+    <span class="temperature">18c</span>
   </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="day">Tue</ion-col>
+      <ion-col class="day">Wed</ion-col>
+      <ion-col class="day">Thu</ion-col>
+      <ion-col class="day">Fri</ion-col>
+      <ion-col class="day">Sat</ion-col>
+      <ion-col class="day">Sun</ion-col>
+      <ion-col class="day">Mon</ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col class="precipitation">60%</ion-col>
+      <ion-col class="precipitation">-</ion-col>
+      <ion-col class="precipitation">20%</ion-col>
+      <ion-col class="precipitation">60%</ion-col>
+      <ion-col class="precipitation">-</ion-col>
+      <ion-col class="precipitation">-</ion-col>
+      <ion-col class="precipitation">-</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="icon-sm"><img src="../../assets/2x.png" alt=""></ion-col>
+      <ion-col class="icon-sm"><img src="../../assets/2x.png" alt=""></ion-col>
+      <ion-col class="icon-sm"><img src="../../assets/2x.png" alt=""></ion-col>
+      <ion-col class="icon-sm"><img src="../../assets/2x.png" alt=""></ion-col>
+      <ion-col class="icon-sm"><img src="../../assets/2x.png" alt=""></ion-col>
+      <ion-col class="icon-sm"><img src="../../assets/2x.png" alt=""></ion-col>
+      <ion-col class="icon-sm"><img src="../../assets/2x.png" alt=""></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="hi-sm">25ºC</ion-col>
+      <ion-col class="hi-sm">22ºC</ion-col>
+      <ion-col class="hi-sm">23ºC</ion-col>
+      <ion-col class="hi-sm">24ºC</ion-col>
+      <ion-col class="hi-sm">29ºC</ion-col>
+      <ion-col class="hi-sm">28ºC</ion-col>
+      <ion-col class="hi-sm">27ºC</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="lo-sm">15Cº</ion-col>
+      <ion-col class="lo-sm">13Cº</ion-col>
+      <ion-col class="lo-sm">12Cº</ion-col>
+      <ion-col class="lo-sm">11Cº</ion-col>
+      <ion-col class="lo-sm">15Cº</ion-col>
+      <ion-col class="lo-sm">15Cº</ion-col>
+      <ion-col class="lo-sm">15Cº</ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+  <ion-button (click)="biometricActivate()">
+    Activar Biometria
+  </ion-button>
+
+  <ion-button (click)="logOut()">
+    Cerrar sesión
+  </ion-button>
+  <ion-fab>
+    <ion-fab-button [routerLink]="['/login']">
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
