@@ -69,9 +69,8 @@
       <ion-col class="lo-sm">15Cº</ion-col>
       <ion-col class="lo-sm">15Cº</ion-col>
     </ion-row>
-
-
   </ion-grid>
+  
   <ion-button (click)="biometricActivate()">
     Activar Biometria
   </ion-button>
@@ -79,9 +78,11 @@
   <ion-button (click)="logOut()">
     Cerrar sesión
   </ion-button>
+
   <ion-fab>
     <ion-fab-button [routerLink]="['/login']">
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
 </ion-content>

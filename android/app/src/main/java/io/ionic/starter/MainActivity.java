@@ -9,6 +9,6 @@ public class MainActivity extends BridgeActivity {
     super.onCreate(savedInstanceState);
 
     // Initializes the Bridge
-      bridgeBuilder.addPlugin(NativeBiometric.class);
+    bridgeBuilder.addPlugin(NativeBiometric.class);
   }
 }
