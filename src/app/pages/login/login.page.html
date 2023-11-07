@@ -22,7 +22,7 @@
   </ion-button>
 
   <div class="fingerPrintButton">
-    <ion-button *ngIf="isDisable" (click)="fingerPrint()">
+    <ion-button *ngIf="isAvailable" (click)="fingerPrint()">
       <ion-icon name="finger-print-outline"></ion-icon>
     </ion-button>    
   </div>

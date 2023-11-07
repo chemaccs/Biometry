@@ -6,8 +6,7 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { AlertController, NavController} from '@ionic/angular';
-import { NativeBiometric, BiometryType } from "@capgo/capacitor-native-biometric";
-import { BiometricService } from 'src/app/biometric.service';
+import { BiometricService } from 'src/app/service/biometric.service';
 
 
 @Component({
@@ -32,10 +31,17 @@ export class SignupPage implements OnInit {
   }
 
   async guardar(){
-    this.biometricService.alertSignup(this.formularioRegistro).then(alerta =>{
-      if(alerta == true){
-        this.navCtrl.navigateRoot('login')
-      }
-    })
+    let formulario= this.formularioRegistro.value;
+    if(formulario.invalid){
+        this.biometricService.alertControllerFormIncomplete();
+    }
+    else{
+      this.biometricService.alertPasswordIsEquals(formulario.password,formulario.confirmacionPassword).then(result => {
+        if(result){
+          this.biometricService.createUserAPI(formulario.nombre,formulario.password);
+          this.navCtrl.navigateRoot('login');
+        }
+      });
+    }
   }
 }

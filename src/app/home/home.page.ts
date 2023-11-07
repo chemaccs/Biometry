@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NativeBiometric, BiometryType } from "@capgo/capacitor-native-biometric";
 import { AlertController, NavController} from '@ionic/angular';
-import { BiometricService } from '../biometric.service';
+import { BiometricService } from 'src/app/service/biometric.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',

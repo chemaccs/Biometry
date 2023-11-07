@@ -6,8 +6,7 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { AlertController, NavController} from '@ionic/angular';
-import { NativeBiometric, BiometryType } from "@capgo/capacitor-native-biometric";
-import { BiometricService } from 'src/app/biometric.service';
+import { BiometricService } from 'src/app/service/biometric.service';
 
 
 @Component({
@@ -18,7 +17,7 @@ import { BiometricService } from 'src/app/biometric.service';
 export class LoginPage implements OnInit {
 
   formularioLogin: FormGroup;
-  isDisable: Boolean = false;
+  isAvailable: Boolean = false;
   
   constructor(public fb: FormBuilder, public alertController: AlertController
     ,public navCtrl: NavController, private  biometricService: BiometricService) {
@@ -29,22 +28,27 @@ export class LoginPage implements OnInit {
    }
 
   ngOnInit() {
-    NativeBiometric.isAvailable().then((result)=>
-      {if(result.isAvailable){
-        NativeBiometric.getCredentials({ server: "fingerPrint",}).then(credent => {
-          if(credent){
-              this.isDisable = true
-          }
-        });
+    this.biometricService.isBioConfigured().then((booleanBiometric)=>{
+      if(booleanBiometric){
+        this.isAvailable = true
       }
-    }).catch(()=>false);
+    });
   }
   
   async iniciar(){
-    this.biometricService.alertLogin(this.formularioLogin);
-  }    
-      
+    var formulario = this.formularioLogin.value;
+    this.biometricService.loginUpAPI(formulario.nombre,formulario.password).then(asnwer => {
+      if(asnwer){
+          this.navCtrl.navigateRoot('home');
+        }
+      else{
+          this.biometricService.alertLoginIncorrect();
+        }
+      });
+    }
+
   async fingerPrint(){
     this.biometricService.fingerPrint();
     }
+
 }
