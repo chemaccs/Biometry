@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { AlertController, NavController} from '@ionic/angular';
 import { BiometricService } from 'src/app/service/biometric.service';
+import { AuthApiServiceService } from 'src/app/service/auth-api-service.service';
 
 
 @Component({
@@ -16,28 +17,34 @@ import { BiometricService } from 'src/app/service/biometric.service';
 })
 export class LoginPage implements OnInit {
 
-  formularioLogin: FormGroup;
+  formularioLogin!: FormGroup;
   isAvailable: Boolean = false;
   
   constructor(public fb: FormBuilder, public alertController: AlertController
-    ,public navCtrl: NavController, private  biometricService: BiometricService) {
-    this.formularioLogin = this.fb.group({
-      'nombre': new FormControl("",Validators.required),
-      'password': new FormControl("",Validators.required)
-    })
+    ,public navCtrl: NavController, private  biometricService: BiometricService,
+    private authApiServiceService:AuthApiServiceService) {
+    
    }
 
   ngOnInit() {
+    this.formularioLogin= this.initForm()
     this.biometricService.isBioConfigured().then((booleanBiometric)=>{
       if(booleanBiometric){
         this.isAvailable = true
       }
     });
   }
-  
-  async iniciar(){
-    var formulario = this.formularioLogin.value;
-    this.biometricService.loginUpAPI(formulario.nombre,formulario.password).then(asnwer => {
+
+  initForm(): FormGroup{
+    return this.fb.group({
+      'nombre': new FormControl("",Validators.required),
+      'password': new FormControl("",Validators.required)
+    })
+  }
+
+  async iniciar(): Promise<void>{
+    let formulario = this.formularioLogin.value;
+    this.biometricService.login(formulario.nombre,formulario.password).then(asnwer => {
       if(asnwer){
           this.navCtrl.navigateRoot('home');
         }
@@ -47,7 +54,7 @@ export class LoginPage implements OnInit {
       });
     }
 
-  async fingerPrint(){
+  async fingerPrint(): Promise<void>{
     this.biometricService.fingerPrint();
     }
 

@@ -11,10 +11,10 @@ export class HomePage {
   constructor(public alertController: AlertController, public navCtrl: NavController,
      private biometricService: BiometricService) {}
 
-  biometricActivate(){
+  biometricActivate(): void{
     this.biometricService.biometricActivate();
   }
-  async logOut(){
+  async logOut(): Promise<void>{
     this.biometricService.logOut();
   }
 }
